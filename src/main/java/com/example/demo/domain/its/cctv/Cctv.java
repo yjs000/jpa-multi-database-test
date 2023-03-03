@@ -1,5 +1,6 @@
 package com.example.demo.domain.its.cctv;
 
+import com.example.demo.common.annotation.SearchField;
 import lombok.Data;
 
 import javax.persistence.*;
@@ -9,11 +10,11 @@ import java.util.Date;
 @Data
 @Entity
 @Table(schema = "ATMSADM", name = "T_MS_CCTV")
-public class Cctv {
+public class Cctv implements Serializable {
 
-    @Id
-    @Column(name = "CCTV_ID")
-    private String cctvId;
+    @SearchField(columnName = "key.cctvId")
+    @EmbeddedId
+    private CctvKey key;
 
     @Column(name = "NODE_ID")
     private String nodeId;
